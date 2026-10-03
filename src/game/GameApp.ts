@@ -13,6 +13,12 @@ const COLS = 10;
 const ROWS = 10;
 const diamond = [0, -TILE_H / 2, TILE_W / 2, 0, 0, TILE_H / 2, -TILE_W / 2, 0];
 
+// Altura ocupada pela menu bar; o grid é centralizado na área livre acima dela.
+const MENU_BAR_RESERVED_HEIGHT= 80;
+
+// Ponto da tela (em coordenadas do mundo) que corresponde ao cento do mapa.
+const mapCenter = gridToScreen((COLS -1) / 2, (ROWS -1) / 2);
+
 export async function startGame(host: HTMLElement, character: Character) {
     const app = new Application();
     await app.init({ resizeTo: host, background: '#1B1B2F', antialias: false });
@@ -29,7 +35,15 @@ export async function startGame(host: HTMLElement, character: Character) {
         }
 
         const world = new Container();
-        world.position.set(app.screen.width / 2, 80);
+        const centerWorld = () => {
+            const availableHeight = app.screen.height - MENU_BAR_RESERVED_HEIGHT;
+            world.position.set(
+                app.screen.width / 2 - mapCenter.sx,
+                availableHeight / 2 - mapCenter.sy
+            );
+        };
+        centerWorld();
+        app.renderer.on('resize', centerWorld); // recentraliza ao redimensionar a janela;
         app.stage.addChild(world);
 
         const grid = new Grid(COLS, ROWS);

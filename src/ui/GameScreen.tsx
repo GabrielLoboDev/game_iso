@@ -2,11 +2,20 @@ import { useEffect, useRef } from 'react';
 import type { Application } from 'pixi.js';
 import { startGame } from '../game/GameApp';
 import { useAppStore } from '../state/appStore';
+import { MenuBar } from './hud/MenuBar';
+import { MenuPanel } from './hud/MenuPanel';
+import { useHudStore } from '../state/hudStore';
 
 export function GameScreen() {
   const host = useRef<HTMLDivElement>(null);
   const character = useAppStore((s) => s.character);
   const logout = useAppStore((s) => s.logout);
+  const closeMenu = useHudStore((state) => state.closeMenu);
+
+  // Ao sair do jogo, não deixa nenhum painel aberto para a próxima sessão.
+  useEffect(() => {
+    return () => closeMenu();
+  }, [closeMenu])
 
   useEffect(() => {
     const el = host.current;
@@ -28,7 +37,7 @@ export function GameScreen() {
     };
   }, [character]);
 
-  if (!character) return null;               // depois dos hooks, nunca antes
+  if (!character) return null;   // depois dos hooks, nunca antes
 
   return (
     <>
@@ -39,6 +48,8 @@ export function GameScreen() {
       >
         Sair
       </button>
+      <MenuPanel />
+      <MenuBar />
     </>
   );
 }
