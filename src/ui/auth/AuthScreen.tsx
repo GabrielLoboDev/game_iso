@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button } from '../components/Button';
-import { Panel } from '../components/Panel';
 import { LoginForm } from './LoginForm';
 import { CreateCharacter } from './CreaterCharacter';
 
@@ -13,9 +12,9 @@ export function AuthScreen() {
           {creating ? 'Já tenho conta' : 'Novo aqui?'}
       </Button>
 
-      <Panel className="flex w-[20rem] max-w-3xl flex-col gap-4">
+      <div className="flex flex-col gap-4">
         {creating ? <CreateCharacter /> : <LoginForm />}
-      </Panel>
+      </div>
     </main>
   );
 }

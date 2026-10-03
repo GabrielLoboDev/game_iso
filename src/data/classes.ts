@@ -30,7 +30,7 @@ export const CLASSES: Record<ClassId, ClassDef> = {
     },
     villain: {
         id: 'villain',
-        label: 'Vião',
+        label: 'Vilão',
         speed: 3,
         description: 'Equilibrado, evolui em todos os atributos',
         growth: {

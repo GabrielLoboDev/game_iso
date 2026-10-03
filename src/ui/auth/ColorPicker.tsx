@@ -15,7 +15,7 @@ export function ColorPicker({ value, onChange }: Props) {
           title={c.label}
           onClick={() => onChange(c.id)}
           style={{ background: cssColor(c.value) }}
-          className={cn('h-8 w-8 border-2', value === c.id ? 'scale-110 border-white' : 'border-transparent')}
+          className={cn('h-5 w-5 border-2', value === c.id ? 'scale-110 border-orange' : 'border-transparent')}
         />
       ))}
     </div>
