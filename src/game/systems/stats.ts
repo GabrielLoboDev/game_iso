@@ -8,9 +8,8 @@ export interface DeriveStats {
     resistance: number  // a a 0.5;
 }
 
-const ratioChance = (stat: number, base: number, cap: number) => {
+const ratioChance = (stat: number, base: number, cap: number) =>
     base <= 0 ? 0 : Math.min(cap, (stat / base) * B.RATIO_MULTIPLIER);
-}
 
 export function deriveStats(a: Attributes, weaponDamage = 0): DeriveStats {
     return {

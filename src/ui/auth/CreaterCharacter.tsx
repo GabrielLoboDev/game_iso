@@ -73,7 +73,7 @@ export function CreateCharacter() {
           {error && <p className="text-sm text-red-400">{error}</p>}
         </Panel>
 
-        <Button variant="orange" font='anton' className='w-[18rem] h-[3rem] text-[22px]'>
+        <Button type='submit' variant="orange" font='anton' className='w-[18rem] h-[3rem] text-[22px]' disabled={loading}>
             {loading ? 'Salvando...' : 'Salvar'}
         </Button>
       </div>

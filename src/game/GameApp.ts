@@ -46,7 +46,7 @@ export async function startGame(host: HTMLElement, character: Character) {
         }
 
         // Marcador ANTES das entidades, para o personagem ficar por cima
-        const marker = new Graphics().poly(diamond).fill({ color: 0xFFCC00, alpha: 0.6 });
+        const marker = new Graphics().poly(diamond).fill({ color: 0xF56F16, alpha: 0.6 });
         marker.visible = false;
         world.addChild(marker);
 

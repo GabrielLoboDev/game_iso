@@ -1,5 +1,5 @@
 export class Grid {
-    cells: number[][]; // 0 = livre, 1 =bloqueado (indexado como cells[y][x]);
+    cells: number[][]; // 0 = livre, 1 =bloqueado (indexado como cells[x][y]);
 
     constructor(public cols: number, public rows: number) {
         this.cells = Array.from({ length: rows }, () => Array(cols).fill(0));
@@ -10,6 +10,6 @@ export class Grid {
     }
 
     isWalkable(x: number, y: number) {
-        return this.inBounds(x, y) && this.cells[x][y] === 0;
+        return this.inBounds(x, y) && this.cells[y][x] === 0;
     }
 }

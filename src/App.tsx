@@ -1,5 +1,4 @@
 import { useAppStore } from './state/appStore';
-import { MainMenu } from './ui/MainMenu';
 import { GameScreen } from './ui/GameScreen';
 import { AuthScreen } from './ui/auth/AuthScreen';
 
@@ -8,7 +7,4 @@ export default function App() {
   const screen = useAppStore((s) => s.screen);
 
   return screen === 'game' ? <GameScreen /> : <AuthScreen />;
-
-  // Comportamento padrão: menu.
-  return <MainMenu />;
 }

@@ -21,18 +21,18 @@ export function LoginForm() {
   };
 
   return (
-   <Panel variant='default' className='w-[20rem]'>
+   <Panel variant='default' className='w-[20rem] flex flex-col'>
       <form onSubmit={submit} className="flex flex-col gap-3">
         <Input value={username} onChange={(e) => setUsername(e.target.value)}
               placeholder="Username" autoComplete="username" />
 
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
              placeholder="Password" autoComplete="current-password" />
-              {error && <p className="text-sm text-red-400">{error}</p>}
+              {error && <p className="flex justify-center text-font-red font-mono">{error}</p>}
 
         <span className='self-center font-mono text-font-black cursor-pointer hover:text-font-red'>Esqueceu a senha?</span>
 
-        <Button variant='green' font='mono' className='w-[100%] h-[2.5rem]'>
+        <Button type='submit' variant='green' font='mono' className='w-[100%] h-[2.5rem]' disabled={loading}>
           {loading ? 'Entrando...' : 'LOGIN'}
         </Button>
       </form>
