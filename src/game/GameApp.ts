@@ -8,6 +8,7 @@ import { CLASSES } from '../data/classes';
 import type { Character, Entity } from './entities/types';
 import { deriveStats } from './systems/stats';
 import { PALETTE } from '../data/palette';
+import { WallsView, WALL_HEIGHT } from './render/WallsView';
 
 const COLS = 10;
 const ROWS = 10;
@@ -39,14 +40,17 @@ export async function startGame(host: HTMLElement, character: Character) {
             const availableHeight = app.screen.height - MENU_BAR_RESERVED_HEIGHT;
             world.position.set(
                 app.screen.width / 2 - mapCenter.sx,
-                availableHeight / 2 - mapCenter.sy
+                availableHeight / 2 - mapCenter.sy + WALL_HEIGHT / 2
             );
         };
         centerWorld();
         app.renderer.on('resize', centerWorld); // recentraliza ao redimensionar a janela;
         app.stage.addChild(world);
 
-        const grid = new Grid(COLS, ROWS);
+        // Paredes do Grid
+        world.addChild(new WallsView(COLS, ROWS));
+
+        const grid = new Grid(COLS, ROWS)
         const pathFinder = createPathFinder(grid);
 
         for (let y = 0; y < ROWS; y++) {
